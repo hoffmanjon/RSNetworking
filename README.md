@@ -20,6 +20,7 @@ Here is a list of extensions provided
 
 * UIImageView
      - setImageForURL(url: NSString, placeHolder: UIImage):  Sets the image in the UIImageView to the placeHolder image and then asynchronously downloads the image from the URL.  Once the image is downloaded it then replaces the placeHolder image with the image downloaded.
+     - setImageForURL(url: NSString, placeHolder: UIImage):  Asynchronously downloads the image from the URL.  Once the image is downloaded, it sets the image of the UIImageView to the downloaded image.
 
 -------------
 
