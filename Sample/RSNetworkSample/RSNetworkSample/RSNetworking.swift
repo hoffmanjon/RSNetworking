@@ -8,10 +8,19 @@
 
 import Foundation
 import UIKit
+import SystemConfiguration
 
 let dictKey = "results"
 
 class RSNetworking: NSObject {
+    
+    enum ConnectionType {
+        case NOCONNECTION
+        case WIFINETWORK
+        case MOBILENETWORK
+        case REACHABLE
+    }
+    
     var queue: NSOperationQueue
     var sessionConfiguration: NSURLSessionConfiguration
     
@@ -80,6 +89,18 @@ class RSNetworking: NSObject {
             var image = UIImage(data: responseData)
             handler(response,image.copy() as UIImage,error)
             })
+    }
+    
+    func isHostnameReachable(hostname: NSString) -> Bool {
+
+        var reachabilityRef = SCNetworkReachabilityCreateWithName(nil,hostname.UTF8String)
+            
+        var reachability = reachabilityRef.takeUnretainedValue()
+        var flags: SCNetworkReachabilityFlags = 0
+        SCNetworkReachabilityGetFlags(reachabilityRef.takeUnretainedValue(), &flags)
+
+        return (flags & UInt32(kSCNetworkReachabilityFlagsReachable) != 0)
+        
     }
     
     

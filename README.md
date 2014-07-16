@@ -12,6 +12,14 @@ Here is a list of the four functions that the library currently exposes:
 * func stringFromURL(url: NSURL, completionHandler handler:  RSNetworking.stringFromURLCompletionClosure):  Retrieves an NSString object from the URL passed in.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an NSString object.
 *	func dictionaryFromJsonURL(url: NSURL, completionHandler handler:  RSNetworking.dictionaryFromURLCompletionClosure):  Retrieves an NSDictionary object from the URL passed in.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an NSDictionary object.  The data returned from the URL should be in JSON format for this function to work properly.
 *	func imageFromURL(url: NSURL, completionHandler handler:  RSNetworking.imageFromURLCompletionClosure):  Retrieves an UIImage object from the URL.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an UIImage object.
+* func isHostReachable(hostname: NSString) -> Bool:  Checks to see if the host is available.
+
+## Extensions
+
+Here is a list of extensions provided
+
+* UIImageView
+     - setImageForURL(url: NSString, placeHolder: UIImage):  Sets the image in the UIImageView to the placeHolder image and then asynchronously downloads the image from the URL.  Once the image is downloaded it then replaces the placeHolder image with the image downloaded.
 
 -------------
 
@@ -62,3 +70,14 @@ Sample code for Networking Library
               println("Error : \(error)")
             }
             })
+
+#### isHostnameReachable
+				var client = RSNetworking()
+        if (client.isHostnameReachable("www.apple.com")) {
+            println("reachable")
+        } else {
+            println("Not Reachable")
+        }
+        
+#### UIImageView:  setImageForURL
+				imageView.setImageForURL(imageURL, placeHolder: UIImage(named: "loading"))	
