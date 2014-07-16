@@ -81,3 +81,7 @@ Sample code for Networking Library
         
 #### UIImageView:  setImageForURL
 				imageView.setImageForURL(imageURL, placeHolder: UIImage(named: "loading"))	
+				
+				or
+				
+				imageView.setImageForURL(imageURL)	
