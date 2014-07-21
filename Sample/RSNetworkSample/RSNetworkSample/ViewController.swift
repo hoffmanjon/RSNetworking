@@ -10,18 +10,27 @@ import UIKit
 
 class ViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var imageView: UIImageView
-    @IBOutlet var appsTableView : UITableView
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var appsTableView : UITableView!
     var tableData: NSArray = NSArray()
-    var imageCache = NSMutableDictionary()
     
     //execute this function when the view loads.
     //This function will execute the iTunes search and upon return will execute the block of code
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //Initiate the RSNetworking library and create the URL
         var client = RSNetworking()
+        if (client.isHostnameReachable("www.apple.com")) {
+            println("reachable")
+        } else {
+            println("Not Reachable")
+        }
+        
+        //Load top image
+        imageView.setImageForURL("http://4.bp.blogspot.com/-PVYkrTJ3Agg/U4NDUROnA4I/AAAAAAAACm8/CnvhLkaX50U/s1600/rover_side.jpg");
+        
         var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
         
         //Call the dictionaryFromJsonURL function to make the request to the iTunes search API
@@ -29,6 +38,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
             if !error? {
                 //Set the tableData NSArray to the results that were returned from the iTunes search and reload the table
                 self.tableData = responseDictionary["results"] as NSArray
+                println(responseDictionary)
                 self.appsTableView.reloadData()
             } else {
                 //If there was an error, log it
@@ -67,8 +77,6 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
         let cellText: String? = rowData["trackName"] as? String
         
         cell!.textLabel.text =  cellText
-        cell!.imageView.image = UIImage(named: "loading")
-        
         
         // Get the track censoredName
         var trackCensorName: NSString = rowData["trackCensoredName"] as NSString
@@ -76,29 +84,13 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
         
         // Grab the artworkUrl60 key to get an image URL
         var imageURL: NSString = rowData["artworkUrl60"] as NSString
-        
-        // Check the image cache for the key (using the image URL as key)
-        var image: UIImage? = self.imageCache.valueForKey(imageURL) as? UIImage
-        
-        // If image is not in cache, get image
-        if( !image? ) {
-            var mCell = cell;
-            var url = NSURL.URLWithString(imageURL)
-            var client = RSNetworking()
-            client.imageFromURL(url, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
-                
-                mCell!.imageView.image = image;
-                self.imageCache.setValue(image, forKey: imageURL)
-                
-                })
-        } else {
-            cell!.imageView.image = image
-        }
-        
-        
+        var mCell = cell
+        mCell!.imageView.setImageForURL(imageURL, placeHolder: UIImage(named: "loading"))
         
         return cell
         
     }
+    
+    
     
 }
