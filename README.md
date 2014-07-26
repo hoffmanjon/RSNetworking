@@ -12,18 +12,21 @@ RSTransaction is the class that defines the transaction we wish to make.  It exp
 
 #####Properties  
 
-*TransactionType - This defines the HTTP request method.  Currently there are three types, GET, POST, UNKNOWN.  Only the GET and POST actually sends a request.
-*baseURL - This is the base URL to use for the request.  This will normally look something like this:  "https://itunes.apple.com".  If you are going to a non-standard port you would put that here as well.  It will look something like this:  "http://mytestserver:8080"
-*path - The path that will be added to the base url.  This will normally be something like this: "search".  It can also include a longer path string like: "path/to/my/service"
-*parameters - Any parameters to send to the service.
+* TransactionType - This defines the HTTP request method.  Currently there are three types, GET, POST, UNKNOWN.  Only the GET and POST actually sends a request.  
+
+* baseURL - This is the base URL to use for the request.  This will normally look something like this:  "https://itunes.apple.com".  If you are going to a non-standard port you would put that here as well.  It will look something like this:  "http://mytestserver:8080"  
+
+* path - The path that will be added to the base url.  This will normally be something like this: "search".  It can also include a longer path string like: "path/to/my/service"  
+
+* parameters - Any parameters to send to the service.
 
 #####initiators
 
-*init(transactionType: RSTransactionType, baseURL: String,  path: String, parameters: [String: String]) - This will initialize the RSTransaction with all properties needed.
+* init(transactionType: RSTransactionType, baseURL: String,  path: String, parameters: [String: String]) - This will initialize the RSTransaction with all properties needed.
 
 #####Functions  
 
-*getFullURLString() -> String - Builds and returns the full URL needed to connect to the service.
+* getFullURLString() -> String - Builds and returns the full URL needed to connect to the service.
 
 
 ###RSTransactionRequest  
@@ -32,13 +35,13 @@ RSTransactionRequest is the class that builds and send out the request to the se
 
 #####Functions  
 
-*func dataFromRSTransaction(transaction: RSTransaction, completionHandler handler: RSNetworking.dataFromRSTransactionCompletionCompletionClosure):  Retrieves an NSData object from the service defined by the RSTransaction.  This is the main function and is used by the other three functions to retrieve an NSData object prior to converting it to the required format.
+* dataFromRSTransaction(transaction: RSTransaction, completionHandler handler: RSNetworking.dataFromRSTransactionCompletionCompletionClosure):  Retrieves an NSData object from the service defined by the RSTransaction.  This is the main function and is used by the other three functions to retrieve an NSData object prior to converting it to the required format.
 
-*func stringFromRSTransaction(transaction: RSTransaction, completionHandler handler:  RSNetworking.stringFromRSTransactionCompletionCompletionClosure):  Retrieves an NSString object from the service defined by the RSTransaction.  This function uses the dataFromRSTransaction function to retrieve an NSData object and then converts it to an NSString object.
+* stringFromRSTransaction(transaction: RSTransaction, completionHandler handler:  RSNetworking.stringFromRSTransactionCompletionCompletionClosure):  Retrieves an NSString object from the service defined by the RSTransaction.  This function uses the dataFromRSTransaction function to retrieve an NSData object and then converts it to an NSString object.
 
-*func dictionaryFromRSTransaction(transaction: RSTransaction, completionHandler handler:  RSNetworking.dictionaryFromRSTransactionCompletionCompletionClosure):  Retrieves an NSDictionary object from the service defined by the RSTransaction.  This function uses the dataFromRSTransaction function to retrieve an NSData object and then converts it to an NSDictionary object.  The data returned from the URL should be in JSON format for this function to work properly.
+* dictionaryFromRSTransaction(transaction: RSTransaction, completionHandler handler:  RSNetworking.dictionaryFromRSTransactionCompletionCompletionClosure):  Retrieves an NSDictionary object from the service defined by the RSTransaction.  This function uses the dataFromRSTransaction function to retrieve an NSData object and then converts it to an NSDictionary object.  The data returned from the URL should be in JSON format for this function to work properly.
 
-*func imageFromRSTransaction(transaction: RSTransaction, completionHandler handler:  RSNetworking.imageFromRSTransactionCompletionCompletionClosure):  Retrieves an UIImage object from the service defined by the RSTransaction.  This function uses the dataFromRSTransaction function to retrieve an NSData object and then converts it to an UIImage object.
+* imageFromRSTransaction(transaction: RSTransaction, completionHandler handler:  RSNetworking.imageFromRSTransactionCompletionCompletionClosure):  Retrieves an UIImage object from the service defined by the RSTransaction.  This function uses the dataFromRSTransaction function to retrieve an NSData object and then converts it to an UIImage object.
 
 ###RSURLRequest  
 
@@ -46,13 +49,13 @@ RSURLRequest will send a GET request to a service with just a URL.  There is no 
 
 #####Functions  
 
-*func dataFromURL(url: NSURL, completionHandler handler: RSNetworking.dataFromURLCompletionClosure):  Retrieves an NSData object from the URL passed in.  This is the main function and is used by the other three functions to retrieve an NSData object prior to converting it to the required format
+* dataFromURL(url: NSURL, completionHandler handler: RSNetworking.dataFromURLCompletionClosure):  Retrieves an NSData object from the URL passed in.  This is the main function and is used by the other three functions to retrieve an NSData object prior to converting it to the required format
 
-*func stringFromURL(url: NSURL, completionHandler handler:  RSNetworking.stringFromURLCompletionClosure):  Retrieves an NSString object from the URL passed in.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an NSString object.
+* stringFromURL(url: NSURL, completionHandler handler:  RSNetworking.stringFromURLCompletionClosure):  Retrieves an NSString object from the URL passed in.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an NSString object.
 
-*func dictionaryFromJsonURL(url: NSURL, completionHandler handler:  RSNetworking.dictionaryFromURLCompletionClosure):  Retrieves an NSDictionary object from the URL passed in.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an NSDictionary object.  The data returned from the URL should be in JSON format for this function to work properly.
+* dictionaryFromJsonURL(url: NSURL, completionHandler handler:  RSNetworking.dictionaryFromURLCompletionClosure):  Retrieves an NSDictionary object from the URL passed in.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an NSDictionary object.  The data returned from the URL should be in JSON format for this function to work properly.
 
-*func imageFromURL(url: NSURL, completionHandler handler:  RSNetworking.imageFromURLCompletionClosure):  Retrieves an UIImage object from the URL.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an UIImage object.
+* imageFromURL(url: NSURL, completionHandler handler:  RSNetworking.imageFromURLCompletionClosure):  Retrieves an UIImage object from the URL.  This function uses the dataFromURL function to retrieve an NSData object and then converts it to an UIImage object.
 
 ###RSUtilities  
 
@@ -60,7 +63,7 @@ RSUtilities will contain various utilities that do not have their own class.  Cu
 
 #####Functions  
 
-*func isHostnameReachable(hostname: NSString) -> Bool - This function will check to see if a host is available or not.  This is a class function.
+* isHostnameReachable(hostname: NSString) -> Bool - This function will check to see if a host is available or not.  This is a class function.
 
 ###RSNetworking - Depreciated  
  
