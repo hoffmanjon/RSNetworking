@@ -1,7 +1,8 @@
 //
-//  RSNetworking.swift
+//  RSURLRequest.swift
+//  RSNetworkSample
 //
-//  Created by Jon Hoffman on 7/12/14.
+//  Created by Jon Hoffman on 7/25/14.
 //  Copyright (c) 2014 Jon Hoffman. All rights reserved.
 //
 
@@ -9,34 +10,21 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
-let dictKey = "results"
 
-/*This class will be depreciated very soon, do not use anymore */
-class RSNetworking: NSObject {
+class RSURLRequest: NSObject {
     
-    enum ConnectionType {
-        case NOCONNECTION
-        case WIFINETWORK
-        case MOBILENETWORK
-        case REACHABLE
-    }
-    
-    var queue: NSOperationQueue
-    var sessionConfiguration: NSURLSessionConfiguration
+    let dictKey = "results"
     
     typealias dataFromURLCompletionClosure = ((NSURLResponse!, NSData!, NSError!) -> Void)!
     typealias stringFromURLCompletionClosure = ((NSURLResponse!, NSString!, NSError!) -> Void)!
     typealias dictionaryFromURLCompletionClosure = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!
     typealias imageFromURLCompletionClosure = ((NSURLResponse!, UIImage!, NSError!) -> Void)!
     
-    init() {
-        queue = NSOperationQueue.currentQueue()
-        sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-    }
-    
-    /* Depreciated */
-    /*This function will be removed in the near fucture, use the function in RSURLRequest */
+
     func dataFromURL(url : NSURL, completionHandler handler: dataFromURLCompletionClosure) {
+        
+        var queue = NSOperationQueue.currentQueue()
+        var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var request = NSURLRequest(URL:url)
         var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
         
@@ -47,8 +35,7 @@ class RSNetworking: NSObject {
         
     }
     
-    /* Depreciated */
-    /*This function will be removed in the near fucture, use the function in RSURLRequest */
+
     func stringFromURL(url : NSURL, completionHandler handler: stringFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
@@ -57,8 +44,7 @@ class RSNetworking: NSObject {
             })
     }
     
-    /* Depreciated */
-    /*This function will be removed in the near fucture, use the function in RSURLRequest */
+
     func dictionaryFromJsonURL(url : NSURL, completionHandler handler: dictionaryFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
@@ -76,16 +62,14 @@ class RSNetworking: NSObject {
             case is NSDictionary:
                 resultDictionary = jsonResponse as NSMutableDictionary
             case is NSArray:
-                resultDictionary[dictKey] = jsonResponse
+                resultDictionary[self.dictKey] = jsonResponse
             default:
-                resultDictionary[dictKey] = ""
+                resultDictionary[self.dictKey] = ""
             }
             handler(response,resultDictionary.copy() as NSDictionary,error)
             })
     }
     
-    /* Depreciated */
-    /*This function will be removed in the near fucture, use the function in RSURLRequest */
     func imageFromURL(url : NSURL, completionHandler handler: imageFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
@@ -98,20 +82,7 @@ class RSNetworking: NSObject {
             handler(response,image.copy() as UIImage,error)
             })
     }
-    
-    /* Depreciated */
-    /*This function will be removed in the near fucture, use the function in RSUtilities */
-    func isHostnameReachable(hostname: NSString) -> Bool {
 
-        var reachabilityRef = SCNetworkReachabilityCreateWithName(nil,hostname.UTF8String)
-            
-        var reachability = reachabilityRef.takeUnretainedValue()
-        var flags: SCNetworkReachabilityFlags = 0
-        SCNetworkReachabilityGetFlags(reachabilityRef.takeUnretainedValue(), &flags)
-
-        return (flags & UInt32(kSCNetworkReachabilityFlagsReachable) != 0)
-        
-    }
     
     
 }
