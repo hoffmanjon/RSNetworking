@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         
         //Send request
         rsRequest.dictionaryFromRSTransaction(rsTransGet, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
-            if !error? {
+            if error == nil {
                 //Set the tableData NSArray to the results that were returned from the iTunes search and reload the table
                 self.tableData = responseDictionary["results"] as NSArray
                 self.resultsTableView.reloadData()
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as? UITableViewCell
         
         //If we did not get a reuseable cell, then create a new one
-        if !cell? {
+        if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: kCellIdentifier)
         }
         

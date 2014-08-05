@@ -48,7 +48,7 @@ class RSURLRequest: NSObject {
     func dictionaryFromJsonURL(url : NSURL, completionHandler handler: dictionaryFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
-            if error? {
+            if error != nil {
                 handler(response,nil,error)
                 return
             }
@@ -73,7 +73,7 @@ class RSURLRequest: NSObject {
     func imageFromURL(url : NSURL, completionHandler handler: imageFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
-            if error? {
+            if error != nil {
                 handler(response,nil,error)
                 return
             }

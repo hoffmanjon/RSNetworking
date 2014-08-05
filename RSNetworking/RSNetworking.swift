@@ -29,7 +29,7 @@ class RSNetworking: NSObject {
     typealias dictionaryFromURLCompletionClosure = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!
     typealias imageFromURLCompletionClosure = ((NSURLResponse!, UIImage!, NSError!) -> Void)!
     
-    init() {
+    override init() {
         queue = NSOperationQueue.currentQueue()
         sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
     }
@@ -62,7 +62,7 @@ class RSNetworking: NSObject {
     func dictionaryFromJsonURL(url : NSURL, completionHandler handler: dictionaryFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
-            if error? {
+            if error != nil {
                 handler(response,nil,error)
                 return
             }
@@ -89,7 +89,7 @@ class RSNetworking: NSObject {
     func imageFromURL(url : NSURL, completionHandler handler: imageFromURLCompletionClosure) {
         dataFromURL(url, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
-            if error? {
+            if error != nil {
                 handler(response,nil,error)
                 return
             }

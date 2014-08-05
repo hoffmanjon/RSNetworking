@@ -89,7 +89,7 @@ class RSTransactionRequest: NSObject {
     func dictionaryFromRSTransaction(transaction: RSTransaction, completionHandler handler: dictionaryFromRSTransactionCompletionClosure) {
         dataFromRSTransaction(transaction, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
-            if error? {
+            if error != nil {
                 handler(response,nil,error)
                 return
             }
@@ -115,7 +115,7 @@ class RSTransactionRequest: NSObject {
     func imageFromRSTransaction(transaction: RSTransaction, completionHandler handler: imageFromRSTransactionCompletionClosure) {
         dataFromRSTransaction(transaction, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
-            if error? {
+            if error != nil {
                 handler(response,nil,error)
                 return
             }
@@ -133,7 +133,10 @@ class RSTransactionRequest: NSObject {
             parts.append(part);
         }
         //hoping to eventually remove this bridge but Swift array does not have componentsJoinedBy
-        var arr : NSArray = parts.bridgeToObjectiveC()
+        
+        
+        var arr : NSArray = parts
         return arr.componentsJoinedByString("&")
+
     }
 }
