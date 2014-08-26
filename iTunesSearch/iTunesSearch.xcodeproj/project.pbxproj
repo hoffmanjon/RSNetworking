@@ -12,12 +12,12 @@
 		3461913419884C72005EFCC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3461913219884C72005EFCC0 /* Main.storyboard */; };
 		3461913619884C72005EFCC0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3461913519884C72005EFCC0 /* Images.xcassets */; };
 		3461914219884C72005EFCC0 /* iTunesSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461914119884C72005EFCC0 /* iTunesSearchTests.swift */; };
-		3461915219884CBB005EFCC0 /* RSNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461914C19884CBB005EFCC0 /* RSNetworking.swift */; };
 		3461915319884CBB005EFCC0 /* RSTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461914D19884CBB005EFCC0 /* RSTransaction.swift */; };
 		3461915419884CBB005EFCC0 /* RSTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461914E19884CBB005EFCC0 /* RSTransactionRequest.swift */; };
 		3461915519884CBB005EFCC0 /* RSURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461914F19884CBB005EFCC0 /* RSURLRequest.swift */; };
 		3461915619884CBB005EFCC0 /* RSUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461915019884CBB005EFCC0 /* RSUtilities.swift */; };
 		3461915719884CBB005EFCC0 /* UIImageView+RSNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461915119884CBB005EFCC0 /* UIImageView+RSNetworking.swift */; };
+		34CB83D119ABF1AE002FA7E9 /* UIButton+RSNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CB83D019ABF1AE002FA7E9 /* UIButton+RSNetworking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,12 +40,12 @@
 		3461913B19884C72005EFCC0 /* iTunesSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3461914019884C72005EFCC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3461914119884C72005EFCC0 /* iTunesSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchTests.swift; sourceTree = "<group>"; };
-		3461914C19884CBB005EFCC0 /* RSNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSNetworking.swift; sourceTree = "<group>"; };
 		3461914D19884CBB005EFCC0 /* RSTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTransaction.swift; sourceTree = "<group>"; };
 		3461914E19884CBB005EFCC0 /* RSTransactionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTransactionRequest.swift; sourceTree = "<group>"; };
 		3461914F19884CBB005EFCC0 /* RSURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSURLRequest.swift; sourceTree = "<group>"; };
 		3461915019884CBB005EFCC0 /* RSUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSUtilities.swift; sourceTree = "<group>"; };
 		3461915119884CBB005EFCC0 /* UIImageView+RSNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+RSNetworking.swift"; sourceTree = "<group>"; };
+		34CB83D019ABF1AE002FA7E9 /* UIButton+RSNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+RSNetworking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,12 +125,12 @@
 		3461914B19884CBB005EFCC0 /* RSNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				3461914C19884CBB005EFCC0 /* RSNetworking.swift */,
 				3461914D19884CBB005EFCC0 /* RSTransaction.swift */,
 				3461914E19884CBB005EFCC0 /* RSTransactionRequest.swift */,
 				3461914F19884CBB005EFCC0 /* RSURLRequest.swift */,
 				3461915019884CBB005EFCC0 /* RSUtilities.swift */,
 				3461915119884CBB005EFCC0 /* UIImageView+RSNetworking.swift */,
+				34CB83D019ABF1AE002FA7E9 /* UIButton+RSNetworking.swift */,
 			);
 			path = RSNetworking;
 			sourceTree = "<group>";
@@ -234,13 +234,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CB83D119ABF1AE002FA7E9 /* UIButton+RSNetworking.swift in Sources */,
 				3461915619884CBB005EFCC0 /* RSUtilities.swift in Sources */,
 				3461915519884CBB005EFCC0 /* RSURLRequest.swift in Sources */,
 				3461913119884C72005EFCC0 /* ViewController.swift in Sources */,
 				3461915319884CBB005EFCC0 /* RSTransaction.swift in Sources */,
 				3461915419884CBB005EFCC0 /* RSTransactionRequest.swift in Sources */,
 				3461915719884CBB005EFCC0 /* UIImageView+RSNetworking.swift in Sources */,
-				3461915219884CBB005EFCC0 /* RSNetworking.swift in Sources */,
 				3461912F19884C72005EFCC0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +427,7 @@
 				3461914719884C72005EFCC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3461914819884C72005EFCC0 /* Build configuration list for PBXNativeTarget "iTunesSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +436,7 @@
 				3461914A19884C72005EFCC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

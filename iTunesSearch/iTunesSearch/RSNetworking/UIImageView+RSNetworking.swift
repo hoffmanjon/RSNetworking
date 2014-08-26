@@ -20,7 +20,7 @@ extension UIImageView {
     
     func setImageForURL(url: NSString) -> Void {
         var url = NSURL.URLWithString(url)
-        var client = RSNetworking()
+        var client = RSURLRequest()
         client.imageFromURL(url, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
             
             self.image = image

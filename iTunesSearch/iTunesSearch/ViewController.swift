@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var searchButton : UIButton!
     @IBOutlet var searchTextField : UITextField!
     @IBOutlet var resultsTableView : UITableView!
+    @IBOutlet var testButton : UIButton!
     
     var tableData: NSArray = NSArray()
     var rsRequest: RSTransactionRequest = RSTransactionRequest()
@@ -21,7 +22,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-                
+
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
             
             //Present alert
             self.presentViewController(alert, animated: true, completion: nil)
+            
         }
     }
     
@@ -55,6 +58,11 @@ class ViewController: UIViewController {
             if error == nil {
                 //Set the tableData NSArray to the results that were returned from the iTunes search and reload the table
                 self.tableData = responseDictionary["results"] as NSArray
+                if self.tableData != nil && self.tableData.count > 0 {
+                    var rowData: NSDictionary = self.tableData[0] as NSDictionary
+                    var url : String = rowData["artworkUrl60"] as NSString
+                    self.testButton.setButtonImageForURL(url, placeHolder: UIImage(named: "loading"), state:.Normal)
+                }
                 self.resultsTableView.reloadData()
             } else {
                 //If there was an error, log it
