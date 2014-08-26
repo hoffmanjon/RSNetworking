@@ -5,7 +5,7 @@ Updated for Xcode Beta 5
 
 RSNetworking is the start of a networking library written entirly for the Swift programming language.  In it's current state, I would strongly recommend not using it in a production environment as I have just started developing and testing it.  There will be major changes that occur (hopefully) very quickly.  I am hopeful that others will begin to assist in the development effort and we will be able to create an awesome networking library in the Swift programming language.  
 
-You can read my blog post for additional information about this update:  http://network-development.blogspot.com/2014/07/rsnetworking-major-update.html 
+You can read my blog post for additional information about this update:  http://network-development.blogspot.com/2014/08/new-release-of-rsnetworking-networking.html 
 
 
 ------------
@@ -84,10 +84,10 @@ Here is a list of extensions provided
 
 
 *  UIButton
-		-  setButtonImageForURL(url: NSString, placeHolder: UIImage, state: UIControlState):  Sets the background image of the UIButton to the placeholder image and then asynchronously downloads the image from the URL.  Once the image downloads it will replace the placeHolder image with the downloaded image.
-		-  setButtonImageForURL(url: NSString, state: UIControlState):  Asynchronously downloads the image from the URL.  Once the download is complete, it will set the background image of the UIButton to the downloaded image.
-		-  setButtonImageForRSTransaction(transaction:RSTransaction, placeHolder: UIImage, state: UIControlState):  Sets the background image of the UIButton to the placeHolder image and then asynchronously downloads the image from the URL.  Once the image downloads it will replace the placeHolder image with the downloaded image.
-		-  setButtonImageForRSTransaction(transaction:RSTransaction, state: UIControlState):  Asynchronously downloads the image from the URL.  Once the download is complete, it will set the background image of the UIButton to the downloaded image.
+     -  setButtonImageForURL(url: NSString, placeHolder: UIImage, state: UIControlState):  Sets the background image of the UIButton to the placeholder image and then asynchronously downloads the image from the URL.  Once the image downloads it will replace the placeHolder image with the downloaded image.
+     -  setButtonImageForURL(url: NSString, state: UIControlState):  Asynchronously downloads the image from the URL.  Once the download is complete, it will set the background image of the UIButton to the downloaded image.
+     -  setButtonImageForRSTransaction(transaction:RSTransaction, placeHolder: UIImage, state: UIControlState):  Sets the background image of the UIButton to the placeHolder image and then asynchronously downloads the image from the URL.  Once the image downloads it will replace the placeHolder image with the downloaded image.
+     -  setButtonImageForRSTransaction(transaction:RSTransaction, state: UIControlState):  Asynchronously downloads the image from the URL.  Once the download is complete, it will set the background image of the UIButton to the downloaded image.
 		
 -------------
 
