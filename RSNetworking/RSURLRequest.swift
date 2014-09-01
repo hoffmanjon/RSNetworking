@@ -56,7 +56,7 @@ class RSURLRequest: NSObject {
             var resultDictionary = NSMutableDictionary()
             var jsonError : NSError?
             
-            var jsonResponse : AnyObject = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
+            var jsonResponse : AnyObject = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)!
             
             switch jsonResponse {
             case is NSDictionary:

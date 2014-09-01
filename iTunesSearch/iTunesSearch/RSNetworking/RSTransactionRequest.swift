@@ -37,9 +37,9 @@ class RSTransactionRequest: NSObject {
         var queue = NSOperationQueue.currentQueue()
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
-        var urlString: String = transaction.getFullURLString()
-        
-        var url: NSURL = NSURL.URLWithString(urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))
+        var urlString: NSString = transaction.getFullURLString()
+        var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
+        var url: NSURL = NSURL.URLWithString(encodeString)
         
         var request = NSMutableURLRequest(URL:url)
         
@@ -62,8 +62,9 @@ class RSTransactionRequest: NSObject {
         var queue = NSOperationQueue.currentQueue()
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
-        var urlString: String = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
-        var url: NSURL = NSURL.URLWithString(urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))
+        var urlString: NSString = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
+        var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
+        var url: NSURL = NSURL.URLWithString(encodeString)
         
         var request = NSMutableURLRequest(URL:url)
         
@@ -97,7 +98,7 @@ class RSTransactionRequest: NSObject {
             var resultDictionary = NSMutableDictionary()
             var jsonError : NSError?
             
-            var jsonResponse : AnyObject = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
+            var jsonResponse : AnyObject = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)!
             
             switch jsonResponse {
             case is NSDictionary:

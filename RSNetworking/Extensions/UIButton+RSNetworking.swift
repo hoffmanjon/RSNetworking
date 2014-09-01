@@ -9,21 +9,20 @@
 import UIKit
 
 extension UIButton {
-    func setButtonImageForURL(url: NSString, placeHolder: UIImage, state: UIControlState) -> Void{
+    func setButtonImageForURL(urlStr: String, placeHolder: UIImage, state: UIControlState) -> Void{
         self.setBackgroundImage(placeHolder, forState:state)
-        setButtonImageForURL(url,state: state)
-        
+        setButtonImageForURL(urlStr,state: state)
     }
     
-    func setButtonImageForURL(url: NSString, state: UIControlState) -> Void {
-        var url = NSURL.URLWithString(url)
+    func setButtonImageForURL(urlStr: String, state: UIControlState) -> Void {
+        var url = NSURL.URLWithString(urlStr)
         var client = RSURLRequest()
         client.imageFromURL(url, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
             self.setBackgroundImage(image, forState:state)
 
         })
     }
-    
+ 
     func setButtonImageForRSTransaction(transaction:RSTransaction, placeHolder: UIImage, state: UIControlState) -> Void {
         self.setBackgroundImage(placeHolder, forState:state)
         setButtonImageForRSTransaction(transaction, state: state)

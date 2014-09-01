@@ -11,15 +11,16 @@ import UIKit
 
 extension UIImageView {
     
-    func setImageForURL(url: NSString, placeHolder: UIImage) -> Void{
+    func setImageForURL(url: String, placeHolder: UIImage) -> Void{
         
-        self.image = placeHolder;
+        self.image = placeHolder
         setImageForURL(url)
         
     }
     
-    func setImageForURL(url: NSString) -> Void {
-        var url = NSURL.URLWithString(url)
+    func setImageForURL(urlStr: String) -> Void {
+        var url = NSURL.URLWithString(urlStr)
+    //    var url = NSURL.URLWithString(url)
         var client = RSURLRequest()
         client.imageFromURL(url, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
             
