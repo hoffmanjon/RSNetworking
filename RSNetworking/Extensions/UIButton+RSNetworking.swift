@@ -15,9 +15,9 @@ extension UIButton {
     }
     
     func setButtonImageForURL(urlStr: String, state: UIControlState) -> Void {
-        var url = NSURL.URLWithString(urlStr)
+        var url = NSURL(string: urlStr)
         var client = RSURLRequest()
-        client.imageFromURL(url, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
+        client.imageFromURL(url!, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
             self.setBackgroundImage(image, forState:state)
 
         })

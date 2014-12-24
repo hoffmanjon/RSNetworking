@@ -58,10 +58,10 @@ class ViewController: UIViewController {
             if error == nil {
                 //Set the tableData NSArray to the results that were returned from the iTunes search and reload the table
                 self.tableData = responseDictionary["results"] as NSArray
-                if self.tableData != nil && self.tableData.count > 0 {
+                if self.tableData.count > 0 {
                     var rowData: NSDictionary = self.tableData[0] as NSDictionary
                     var url : String = rowData["artworkUrl60"] as NSString
-                    self.testButton.setButtonImageForURL(url, placeHolder: UIImage(named: "loading"), state:.Normal)
+                    self.testButton.setButtonImageForURL(url, placeHolder: UIImage(named: "loading")!, state:.Normal)
                 }
                 self.resultsTableView.reloadData()
             } else {
@@ -97,17 +97,17 @@ class ViewController: UIViewController {
         var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
         
         //Set the text of the cell
-        cell!.textLabel.text =  rowData["trackName"] as? String
+        cell!.textLabel!.text =  rowData["trackName"] as? String
         
         //Set the detailText of the cell
-        cell!.detailTextLabel.text = rowData["trackCensoredName"] as NSString
+        cell!.detailTextLabel!.text = rowData["trackCensoredName"] as NSString
         
         //Use the setImageForURL method added to the UIImageView by the
         //RSNetworking catagory to load an image from a URL.  
         //While the image loads we use a placeholder image
         var imageURL: NSString = rowData["artworkUrl60"] as NSString
         var mCell = cell
-        mCell!.imageView.setImageForURL(imageURL, placeHolder: UIImage(named: "loading"))
+        mCell!.imageView!.setImageForURL(imageURL, placeHolder: UIImage(named: "loading")!)
         
         return cell
         

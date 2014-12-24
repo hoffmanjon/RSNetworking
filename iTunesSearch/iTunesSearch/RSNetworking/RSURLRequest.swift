@@ -79,7 +79,7 @@ class RSURLRequest: NSObject {
             }
             
             var image = UIImage(data: responseData)
-            handler(response,image.copy() as UIImage,error)
+            handler(response,image?.copy() as UIImage,error)
             })
     }
 

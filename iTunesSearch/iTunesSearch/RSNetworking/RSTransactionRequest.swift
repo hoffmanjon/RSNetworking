@@ -39,7 +39,7 @@ class RSTransactionRequest: NSObject {
         
         var urlString: NSString = transaction.getFullURLString()
         var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
-        var url: NSURL = NSURL.URLWithString(encodeString)
+        var url: NSURL = NSURL(string: encodeString)!
         
         var request = NSMutableURLRequest(URL:url)
         
@@ -64,7 +64,7 @@ class RSTransactionRequest: NSObject {
         
         var urlString: NSString = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
         var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
-        var url: NSURL = NSURL.URLWithString(encodeString)
+        var url: NSURL = NSURL(string: encodeString)!
         
         var request = NSMutableURLRequest(URL:url)
         
@@ -122,7 +122,7 @@ class RSTransactionRequest: NSObject {
             }
             
             var image = UIImage(data: responseData)
-            handler(response,image.copy() as UIImage,error)
+            handler(response,image?.copy() as UIImage?,error)
             })
     }
     

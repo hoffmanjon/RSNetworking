@@ -1,7 +1,7 @@
 RSNetworking
 =====================
 
-Updated for Xcode Beta 6     
+Updated for Xcode Beta 7     
 
 RSNetworking is the start of a networking library written entirly for the Swift programming language.  In it's current state, I would strongly recommend not using it in a production environment as I have just started developing and testing it.  There will be major changes that occur (hopefully) very quickly.  I am hopeful that others will begin to assist in the development effort and we will be able to create an awesome networking library in the Swift programming language.  
 
