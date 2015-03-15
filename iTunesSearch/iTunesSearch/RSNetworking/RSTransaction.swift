@@ -15,8 +15,8 @@ enum RSTransactionType {
 }
 
 class RSTransaction: NSObject {
-    var transactionType : RSTransactionType = RSTransactionType.UNKNOWN
-    var baseURL : String
+    var transactionType = RSTransactionType.UNKNOWN
+    var baseURL: String
     var path: String
     var parameters : [String:String]
     

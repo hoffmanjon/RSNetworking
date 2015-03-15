@@ -16,10 +16,10 @@ class RSTransactionRequest: NSObject {
     
     let dictKey = "results"
     
-    typealias dataFromRSTransactionCompletionClosure = ((NSURLResponse!, NSData!, NSError!) -> Void)!
-    typealias stringFromRSTransactionCompletionClosure = ((NSURLResponse!, NSString!, NSError!) -> Void)!
-    typealias dictionaryFromRSTransactionCompletionClosure = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!
-    typealias imageFromRSTransactionCompletionClosure = ((NSURLResponse!, UIImage!, NSError!) -> Void)!
+    typealias dataFromRSTransactionCompletionClosure = ((NSURLResponse!, NSData!, NSError!) -> Void)
+    typealias stringFromRSTransactionCompletionClosure = ((NSURLResponse!, NSString!, NSError!) -> Void)
+    typealias dictionaryFromRSTransactionCompletionClosure = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)
+    typealias imageFromRSTransactionCompletionClosure = ((NSURLResponse!, UIImage!, NSError!) -> Void)
     
     
     func dataFromRSTransaction(transaction: RSTransaction, completionHandler handler: dataFromRSTransactionCompletionClosure)
@@ -34,48 +34,48 @@ class RSTransactionRequest: NSObject {
     private func dataFromRSTransactionPost(transaction: RSTransaction, completionHandler handler: dataFromRSTransactionCompletionClosure)
     {
         
-        var queue = NSOperationQueue.currentQueue()
+        var queue = NSOperationQueue()
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
         var urlString: NSString = transaction.getFullURLString()
         var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
-        var url: NSURL = NSURL(string: encodeString)!
-        
-        var request = NSMutableURLRequest(URL:url)
-        
-        request.HTTPMethod = "POST"
-        var params = dictionaryToQueryString(transaction.parameters)
-        request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        
-        var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
-        
-        var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+        if let url: NSURL = NSURL(string: encodeString) {
             
-            handler(response,responseData,error)
+            var request = NSMutableURLRequest(URL:url)
+            
+            request.HTTPMethod = "POST"
+            var params = dictionaryToQueryString(transaction.parameters)
+            request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            
+            var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
+            
+            var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+                
+                handler(response,responseData,error)
             }).resume()
-        
+        }
     }
     
     private func dataFromRSTransactionGet(transaction: RSTransaction, completionHandler handler: dataFromRSTransactionCompletionClosure)
     {
-    
-        var queue = NSOperationQueue.currentQueue()
+        
+        var queue = NSOperationQueue()
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
         var urlString: NSString = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
         var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
-        var url: NSURL = NSURL(string: encodeString)!
-        
-        var request = NSMutableURLRequest(URL:url)
-        
-        request.HTTPMethod = "GET"
-        var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
-        
-        var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+        if let url: NSURL = NSURL(string: encodeString){
             
-            handler(response,responseData,error)
+            var request = NSMutableURLRequest(URL:url)
+            
+            request.HTTPMethod = "GET"
+            var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
+            
+            var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+                
+                handler(response,responseData,error)
             }).resume()
-        
+        }
     }
     
     func stringFromRSTransaction(transaction: RSTransaction, completionHandler handler: stringFromRSTransactionCompletionClosure) {
@@ -83,10 +83,10 @@ class RSTransactionRequest: NSObject {
             
             var responseString = NSString(data: responseData, encoding: NSUTF8StringEncoding)
             handler(response,responseString,error)
-            })
+        })
     }
     
-
+    
     func dictionaryFromRSTransaction(transaction: RSTransaction, completionHandler handler: dictionaryFromRSTransactionCompletionClosure) {
         dataFromRSTransaction(transaction, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
@@ -109,10 +109,10 @@ class RSTransactionRequest: NSObject {
                 resultDictionary[self.dictKey] = ""
             }
             handler(response,resultDictionary.copy() as NSDictionary,error)
-            })
+        })
     }
     
-
+    
     func imageFromRSTransaction(transaction: RSTransaction, completionHandler handler: imageFromRSTransactionCompletionClosure) {
         dataFromRSTransaction(transaction, completionHandler: {(response: NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
             
@@ -123,7 +123,7 @@ class RSTransactionRequest: NSObject {
             
             var image = UIImage(data: responseData)
             handler(response,image?.copy() as UIImage?,error)
-            })
+        })
     }
     
     
@@ -135,9 +135,8 @@ class RSTransactionRequest: NSObject {
         }
         //hoping to eventually remove this bridge but Swift array does not have componentsJoinedBy
         
-        
         var arr : NSArray = parts
         return arr.componentsJoinedByString("&")
-
+        
     }
 }
