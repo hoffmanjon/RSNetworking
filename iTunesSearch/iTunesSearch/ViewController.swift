@@ -28,8 +28,9 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         //check to see if host is reachable
-        if (!RSUtilities.isHostnameReachable("www.apple.com")) {
-            
+        if (!RSUtilities.isNetworkAvailable("www.apple.com")) {
+            var networkType = RSUtilities.networkConnectionType("www.apple.com")
+ 
             //If host is not reachable, display a UIAlertController informing the user
             var alert = UIAlertController(title: "Alert", message: "You are not conected to the Internet", preferredStyle: UIAlertControllerStyle.Alert)
             
