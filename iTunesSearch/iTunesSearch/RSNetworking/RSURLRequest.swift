@@ -15,10 +15,10 @@ class RSURLRequest: NSObject {
     
     let dictKey = "results"
     
-    typealias dataFromURLCompletionClosure = ((NSURLResponse!, NSData!, NSError!) -> Void)!
-    typealias stringFromURLCompletionClosure = ((NSURLResponse!, NSString!, NSError!) -> Void)!
-    typealias dictionaryFromURLCompletionClosure = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!
-    typealias imageFromURLCompletionClosure = ((NSURLResponse!, UIImage!, NSError!) -> Void)!
+    typealias dataFromURLCompletionClosure = ((NSURLResponse!, NSData!, NSError!) -> Void)
+    typealias stringFromURLCompletionClosure = ((NSURLResponse!, NSString!, NSError!) -> Void)
+    typealias dictionaryFromURLCompletionClosure = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)
+    typealias imageFromURLCompletionClosure = ((NSURLResponse!, UIImage!, NSError!) -> Void)
     
 
     func dataFromURL(url : NSURL, completionHandler handler: dataFromURLCompletionClosure) {

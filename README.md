@@ -98,7 +98,7 @@ Sample code for Networking Library
 
 #### dataFromURL
 ```
-        var client = Client()
+        var client = RSURLRequest()
         
         var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
         
@@ -114,7 +114,7 @@ Sample code for Networking Library
         
 #### dictionaryFromJsonURL
 ```
-        var client = Client()
+        var client = RSURLRequest()
         
         var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
         
@@ -129,7 +129,7 @@ Sample code for Networking Library
 
 #### stringFromURL  
 ```     
-        var client = Client()
+        var client = RSURLRequest()
         
         var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
         
@@ -144,7 +144,7 @@ Sample code for Networking Library
  
 #### imageFromURL  
 ```         
-        var client = Client()  
+        var client = RSURLRequest()  
           
         var imageURL = NSURL.URLWithString("http://a1.mzstatic.com/us/r30/Music/y2003/m12/d17/h16/s05.whogqrwc.100x100-75.jpg")
         
