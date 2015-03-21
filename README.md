@@ -101,61 +101,67 @@ Sample code for Networking Library
 ```
         var client = RSURLRequest()
         
-        var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
+        if let testURL = NSURL(string:"https://itunes.apple.com/search?term=jimmy+buffett&media=music") {
         
-        client.dataFromURL(testURL, completionHandler: {(response : NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
-            if !error? {
+        	client.dataFromURL(testURL, completionHandler: {(response : NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
+            if error? == nil {
             	var string = NSString(data: responseData, encoding: NSUTF8StringEncoding)
             	println("Response Data: \(string)")
             } else {
                 println("Error : \(error)")
             }
-            }) 
+          }) 
+        }
 ```
         
 #### dictionaryFromJsonURL
 ```
+
         var client = RSURLRequest()
         
-        var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
-        
-        client.dictionaryFromJsonURL(testURL, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
-            if !error? {
-                println("Response Dictionary: \(responseDictionary)")
-            } else {
-                println("Error : \(error)")
-            }
+        if let testURL = NSURL(string:"https://itunes.apple.com/search?term=jimmy+buffett&media=music") {
+            
+            client.dictionaryFromJsonURL(testURL, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
+                if error? == nil {
+                    println("Response Dictionary: \(responseDictionary)")
+                } else {
+                    println("Error : \(error)")
+                }
             })
+        }
+
 ```
 
 #### stringFromURL  
 ```     
         var client = RSURLRequest()
         
-        var testURL = NSURL.URLWithString("https://itunes.apple.com/search?term=jimmy+buffett&media=music")
+        if let testURL = NSURL(string:"https://itunes.apple.com/search?term=jimmy+buffett&media=music") {
         
-        client.stringFromURL(testURL, completionHandler: {(response : NSURLResponse!, responseString: NSString!, error: NSError!) -> Void in
-            if !error? {
+        	client.stringFromURL(testURL, completionHandler: {(response : NSURLResponse!, responseString: NSString!, error: NSError!) -> Void in
+            if error? == nil {
             	println("Response Data: \(responseString)")
             } else {
                 println("Error : \(error)")
             }
-            })
+          })
+        }
 ```
  
 #### imageFromURL  
 ```         
         var client = RSURLRequest()  
           
-        var imageURL = NSURL.URLWithString("http://a1.mzstatic.com/us/r30/Music/y2003/m12/d17/h16/s05.whogqrwc.100x100-75.jpg")
+        if let imageURL = NSURL(string:"http://a1.mzstatic.com/us/r30/Music/y2003/m12/d17/h16/s05.whogqrwc.100x100-75.jpg") {
         
         client.imageFromURL(imageURL, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
-            if !error? {
+            if error? == nil {
             	self.imageView.image = image;
             } else {
               println("Error : \(error)")
             }
-            })
+          })
+        }
 ```
 
 #### RSUtilities.isHostnameReachable
