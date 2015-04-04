@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         //check to see if host is reachable
         if (!RSUtilities.isNetworkAvailable("www.apple.com")) {
             var networkType = RSUtilities.networkConnectionType("www.apple.com")
- 
+            
             //If host is not reachable, display a UIAlertController informing the user
             var alert = UIAlertController(title: "Alert", message: "You are not conected to the Internet", preferredStyle: UIAlertControllerStyle.Alert)
             
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
                 //If there was an error, log it
                 println("Error : \(error)")
             }
-            })
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         cell!.detailTextLabel!.text = rowData["trackCensoredName"] as NSString
         
         //Use the setImageForURL method added to the UIImageView by the
-        //RSNetworking catagory to load an image from a URL.  
+        //RSNetworking catagory to load an image from a URL.
         //While the image loads we use a placeholder image
         var imageURL: NSString = rowData["artworkUrl60"] as NSString
         var mCell = cell
@@ -113,6 +113,6 @@ class ViewController: UIViewController {
         return cell
         
     }
-
+    
 }
 

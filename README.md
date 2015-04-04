@@ -203,7 +203,7 @@ Sample code for Networking Library
 		var rsTransGet = RSTransaction(transactionType: RSTransactionType.GET, baseURL: "https://itunes.apple.com", path: "search", parameters: ["term":"jimmy+buffett","media":"music"])
 		
 		rsRequest.dictionaryFromRSTransaction(rsTransGet, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
-            if !error? {
+            if error? == nil {
                 println(responseDictionary)
             } else {
                 //If there was an error, log it
@@ -217,7 +217,7 @@ Now that you have the RSTransaction, you can simply change the parameters and ma
 		rsTransGet.parameters = ["term":"jimmy","media":"music"]
 		
 		rsRequest.dictionaryFromRSTransaction(rsTransGet, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
-            if !error? {
+            if error? == nil {
                 println(responseDictionary)
             } else {
                 //If there was an error, log it
@@ -233,7 +233,7 @@ Now that you have the RSTransaction, you can simply change the parameters and ma
 		var RSTransGet = RSTransaction(transactionType: RSTransactionType.GET, baseURL: "https://itunes.apple.com", path: "search", parameters: ["term":"jimmy+buffett","media":"music"])
 		
 		RSRequest.stringFromRSTransaction(RSTransGet, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
-            if !error? {
+            if error? == nil {
                 println(responseDictionary)
             } else {
                 //If there was an error, log it

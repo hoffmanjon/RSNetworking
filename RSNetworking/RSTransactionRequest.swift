@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
-
+private func urlEncode(s: String) -> String {
+    return CFURLCreateStringByAddingPercentEscapes(nil, s, nil, "!*'\"();:@&=+$,/?%#[]", CFStringBuiltInEncodings.UTF8.rawValue)
+}
 
 class RSTransactionRequest: NSObject {
     
@@ -38,22 +40,19 @@ class RSTransactionRequest: NSObject {
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
         var urlString: NSString = transaction.getFullURLString()
-        var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
-        if let url: NSURL = NSURL(string: encodeString) {
+        let url: NSURL = NSURL(string: urlString)!
+        
+        var request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "POST"
+        var params = dictionaryToQueryString(transaction.parameters)
+        request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
+        
+        var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
-            var request = NSMutableURLRequest(URL:url)
-            
-            request.HTTPMethod = "POST"
-            var params = dictionaryToQueryString(transaction.parameters)
-            request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-            
-            var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
-            
-            var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
-                
-                handler(response,responseData,error)
-            }).resume()
-        }
+            handler(response,responseData,error)
+        }).resume()
     }
     
     private func dataFromRSTransactionGet(transaction: RSTransaction, completionHandler handler: dataFromRSTransactionCompletionClosure)
@@ -63,19 +62,16 @@ class RSTransactionRequest: NSObject {
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
         var urlString: NSString = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
-        var encodeString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!;
-        if let url: NSURL = NSURL(string: encodeString){
+        let url: NSURL = NSURL(string: urlString)!
+        
+        var request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "GET"
+        var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
+        
+        var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
-            var request = NSMutableURLRequest(URL:url)
-            
-            request.HTTPMethod = "GET"
-            var urlSession = NSURLSession(configuration:sessionConfiguration, delegate: nil, delegateQueue: queue)
-            
-            var sessionTask: Void = urlSession.dataTaskWithRequest(request, completionHandler: {(responseData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
-                
-                handler(response,responseData,error)
-            }).resume()
-        }
+            handler(response,responseData,error)
+        }).resume()
     }
     
     func stringFromRSTransaction(transaction: RSTransaction, completionHandler handler: stringFromRSTransactionCompletionClosure) {
@@ -130,13 +126,8 @@ class RSTransactionRequest: NSObject {
     private func dictionaryToQueryString(dict: [String : String]) -> String {
         var parts = [String]()
         for (key, value) in dict {
-            var part : String = key + "=" + value
-            parts.append(part);
+            parts.append(urlEncode(key) + "=" + urlEncode(value));
         }
-        //hoping to eventually remove this bridge but Swift array does not have componentsJoinedBy
-        
-        var arr : NSArray = parts
-        return arr.componentsJoinedByString("&")
-        
+        return join("&", parts)
     }
 }
