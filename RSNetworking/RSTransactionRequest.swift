@@ -11,7 +11,7 @@ import UIKit
 import SystemConfiguration
 
 private func urlEncode(s: String) -> String {
-    return CFURLCreateStringByAddingPercentEscapes(nil, s, nil, "!*'\"();:@&=+$,/?%#[]", CFStringBuiltInEncodings.UTF8.rawValue)
+    return CFURLCreateStringByAddingPercentEscapes(nil, s, nil, "!*'\"();:@&=+$,/?%#[]", CFStringBuiltInEncodings.UTF8.rawValue) as! String
 }
 
 class RSTransactionRequest: NSObject {
@@ -39,7 +39,7 @@ class RSTransactionRequest: NSObject {
         var queue = NSOperationQueue()
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
-        var urlString: NSString = transaction.getFullURLString()
+        var urlString = transaction.getFullURLString()
         let url: NSURL = NSURL(string: urlString)!
         
         var request = NSMutableURLRequest(URL:url)
@@ -61,7 +61,7 @@ class RSTransactionRequest: NSObject {
         var queue = NSOperationQueue()
         var sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
-        var urlString: NSString = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
+        var urlString = transaction.getFullURLString() + "?" + dictionaryToQueryString(transaction.parameters)
         let url: NSURL = NSURL(string: urlString)!
         
         var request = NSMutableURLRequest(URL:url)
@@ -98,13 +98,13 @@ class RSTransactionRequest: NSObject {
             
             switch jsonResponse {
             case is NSDictionary:
-                resultDictionary = jsonResponse as NSMutableDictionary
+                resultDictionary = jsonResponse as! NSMutableDictionary
             case is NSArray:
                 resultDictionary[self.dictKey] = jsonResponse
             default:
                 resultDictionary[self.dictKey] = ""
             }
-            handler(response,resultDictionary.copy() as NSDictionary,error)
+            handler(response,resultDictionary.copy() as! NSDictionary,error)
         })
     }
     
@@ -118,7 +118,7 @@ class RSTransactionRequest: NSObject {
             }
             
             var image = UIImage(data: responseData)
-            handler(response,image?.copy() as UIImage?,error)
+            handler(response,image?.copy() as! UIImage?,error)
         })
     }
     

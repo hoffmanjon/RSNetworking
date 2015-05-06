@@ -58,10 +58,10 @@ class ViewController: UIViewController {
         rsRequest.dictionaryFromRSTransaction(rsTransGet, completionHandler: {(response : NSURLResponse!, responseDictionary: NSDictionary!, error: NSError!) -> Void in
             if error == nil {
                 //Set the tableData NSArray to the results that were returned from the iTunes search and reload the table
-                self.tableData = responseDictionary["results"] as NSArray
+                self.tableData = responseDictionary["results"] as! NSArray
                 if self.tableData.count > 0 {
-                    var rowData: NSDictionary = self.tableData[0] as NSDictionary
-                    var url : String = rowData["artworkUrl60"] as NSString
+                    var rowData: NSDictionary = self.tableData[0] as! NSDictionary
+                    var url = rowData["artworkUrl60"] as! String
                     self.testButton.setButtonImageForURL(url, placeHolder: UIImage(named: "loading")!, state:.Normal)
                 }
                 self.resultsTableView.reloadData()
@@ -95,18 +95,18 @@ class ViewController: UIViewController {
         }
         
         //Get the data from the NSArray
-        var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        var rowData: NSDictionary = self.tableData[indexPath.row] as! NSDictionary
         
         //Set the text of the cell
         cell!.textLabel!.text =  rowData["trackName"] as? String
         
         //Set the detailText of the cell
-        cell!.detailTextLabel!.text = rowData["trackCensoredName"] as NSString
+        cell!.detailTextLabel!.text = rowData["trackCensoredName"] as? String
         
         //Use the setImageForURL method added to the UIImageView by the
         //RSNetworking catagory to load an image from a URL.
         //While the image loads we use a placeholder image
-        var imageURL: NSString = rowData["artworkUrl60"] as NSString
+        var imageURL = rowData["artworkUrl60"] as! String
         var mCell = cell
         mCell!.imageView!.setImageForURL(imageURL, placeHolder: UIImage(named: "loading")!)
         

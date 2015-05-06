@@ -60,13 +60,13 @@ class RSURLRequest: NSObject {
             
             switch jsonResponse {
             case is NSDictionary:
-                resultDictionary = jsonResponse as NSMutableDictionary
+                resultDictionary = jsonResponse as! NSMutableDictionary
             case is NSArray:
                 resultDictionary[self.dictKey] = jsonResponse
             default:
                 resultDictionary[self.dictKey] = ""
             }
-            handler(response,resultDictionary.copy() as NSDictionary,error)
+            handler(response,resultDictionary.copy() as! NSDictionary,error)
             })
     }
     
@@ -79,7 +79,7 @@ class RSURLRequest: NSObject {
             }
             
             var image = UIImage(data: responseData)
-            handler(response,image?.copy() as UIImage,error)
+            handler(response,image?.copy() as! UIImage,error)
             })
     }
 
