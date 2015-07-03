@@ -7,6 +7,7 @@ RSNetworking is the start of a networking library written entirly for the Swift 
 
 You can read my blog post for additional information about this update:  http://network-development.blogspot.com/2014/08/new-release-of-rsnetworking-networking.html 
 
+If you are looking for a version of RSNetworking that will work with Swift 2, take a look at RSNetworking 2 here:  https://github.com/hoffmanjon/RSNetwokring2
 
 ------------
 
