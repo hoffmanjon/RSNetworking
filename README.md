@@ -3,8 +3,7 @@ RSNetworking
 
 Updated for Swift 1.2   
 
-RSNetworking is the start of a networking library written entirly for the Swift programming language.  In it's current state, I would strongly recommend not using it in a production environment as I have just started developing and testing it.  There will be major changes that occur (hopefully) very quickly.  I am hopeful that others will begin to assist in the development effort and we will be able to create an awesome networking library in the Swift programming language.  
-
+RSNetworking is a networking library written entirly for the Swift programming language.  
 You can read my blog post for additional information about this update:  http://network-development.blogspot.com/2014/08/new-release-of-rsnetworking-networking.html 
 
 If you are looking for a version of RSNetworking that will work with Swift 2, take a look at RSNetworking 2 here:  https://github.com/hoffmanjon/RSNetwokring2
@@ -70,8 +69,7 @@ RSUtilities will contain various utilities that do not have their own class.  Cu
 
 #####Functions  
 
-* isHostnameReachable(hostname: NSString) -> Bool - WILL BE DEPRECIATED SOON.  This function will check to see if a host is available or not.  This is a class function.
-* isNetworkAvailable(hostname: NSString) -> Bool  -  This function will check to see if the network is available.  This is a class function.
+\* isNetworkAvailable(hostname: NSString) -> Bool  -  This function will check to see if the network is available.  This is a class function.
 * networkConnectionType(hostname: NSString) -> ConnectionType  -  This function will return the type of network connection that is available.  The ConnectionType is an enum which can equal one of the following three types:  NONETWORK, MOBILE3GNETWORK or WIFINETWORK.
 
 ## Extensions
